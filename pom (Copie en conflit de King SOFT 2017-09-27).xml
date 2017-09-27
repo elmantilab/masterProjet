@@ -2,10 +2,10 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.xvitcoder.springmvcangularjs</groupId>
-    <artifactId>spring-mvc-angularjs</artifactId>
+    <artifactId>G.L.V</artifactId>
     <packaging>war</packaging>
     <version>1.1</version>
-    <name>AngularSpringApp Maven Webapp</name>
+    <name>G.L.V</name>
     <url>http://maven.apache.org</url>
     <dependencies>
 
@@ -39,11 +39,7 @@
             <artifactId>jackson-databind</artifactId>
             <version>2.1.0</version>
         </dependency>
-        <dependency>
-            <groupId>org.eclipse.persistence</groupId>
-            <artifactId>javax.persistence</artifactId>
-            <version>2.1.0</version>
-        </dependency>
+
     </dependencies>
     <build>
         <finalName>spring-mvc-angularjs</finalName>
