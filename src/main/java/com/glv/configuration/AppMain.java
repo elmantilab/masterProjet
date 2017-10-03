@@ -25,11 +25,11 @@ public class AppMain {
     public static void main(String args[]) {
         AbstractApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
         CategorieService service = (CategorieService) context.getBean("categorieService");
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 5000; i++) {
             Categorie user = new Categorie();
             user.setCategorie("Youssef " + i);
 
-//            service.create(user);
+            service.create(user);
         }
 
         /*

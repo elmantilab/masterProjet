@@ -14,21 +14,28 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.glv.Model.Categorie;
 import com.glv.service.CategorieService;
 import com.glv.service.CategorieServiceImpl;
+import java.util.ArrayList;
 
 @Controller
 @RequestMapping("/categories")
 public class CategorieController {
 
+    private List<Categorie> categories = new ArrayList<>();
     @Autowired
     private CategorieService categorieService;
 
     @RequestMapping("categorielist.json")
     public @ResponseBody
     List<Categorie> getCategoriesList() {
+        System.out.println("  " + categories.size());
+        if (categories.isEmpty()) {
+            categories = categorieService.findAll();
+            System.out.println(" n'est pas vide " + categories.size());
+        } else {
+            System.out.println("est vide " + categories.size());
+        }
 
-        List<Categorie> categories = categorieService.findAll();
-        System.out.println("categories " + categories.size());
-        return categorieService.findAll();
+        return categories;
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
@@ -36,6 +43,7 @@ public class CategorieController {
     void addCategorie(@RequestBody Categorie categorie) {
         System.out.println("categorie " + categorie);
         categorieService.create(categorie);
+        categories.add(categorie);
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.PUT)
@@ -47,8 +55,9 @@ public class CategorieController {
     @RequestMapping(value = "/remove/{id}", method = RequestMethod.DELETE)
     public @ResponseBody
     void removeCategorie(@PathVariable("id") Long id) {
-
-        categorieService.remove(categorieService.findByID(id));
+        Categorie cat = categorieService.findByID(id);
+        categorieService.remove(cat);
+        categories.remove(cat);
     }
 
 //    @RequestMapping(value = "/removeAll", method = RequestMethod.DELETE)
