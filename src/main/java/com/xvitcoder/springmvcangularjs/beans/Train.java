@@ -52,4 +52,10 @@ public class Train {
     public void setDiesel(Boolean diesel) {
         this.diesel = diesel;
     }
+
+    @Override
+    public String toString() {
+        return "Train{" + "id=" + id + ", name=" + name + ", speed=" + speed + ", diesel=" + diesel + '}';
+    }
+    
 }
