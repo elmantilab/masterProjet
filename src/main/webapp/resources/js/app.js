@@ -24,6 +24,44 @@ App.config(['$routeProvider', function ($routeProvider) {
             templateUrl: 'railwaystations/layout',
             controller: RailwayStationController
         });
+        
+        
+        //---------------------nabil----------------//
+         $routeProvider.when('/cleint', {
+            templateUrl: 'client/layout',
+            controller: ClientController
+        });
+        
+         $routeProvider.when('/user', {
+            templateUrl: 'User/layout',
+            controller: UserController
+        });
+        
+          $routeProvider.when('/Profil', {
+            templateUrl: 'Profil/layout',
+            controller: ProfilController
+        });
+        
+          $routeProvider.when('/Vehicule', {
+            templateUrl: 'Vehicule/layout',
+            controller: VehiculeController
+        });
+           $routeProvider.when('/Modele', {
+            templateUrl: 'Modele/layout',
+            controller: ModeleController
+        });
+            $routeProvider.when('/Marque', {
+            templateUrl: 'Marque/layout',
+            controller: MarqueController
+        });
+        
+         $routeProvider.when('/Marque', {
+            templateUrl: 'Marque/layout',
+            controller: MarqueController
+        });
+        
+        
+        
 
 
         $routeProvider.otherwise({redirectTo: '/categories'});

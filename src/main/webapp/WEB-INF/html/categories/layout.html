@@ -44,12 +44,11 @@
         <tr ng-repeat="item in categories| orderBy:predicate">
             <td style="text-align: center;">{{item.id}}</td>
             <td>{{item.categorie}}</td>
-            <td>{{item.categorie}}</td>
+           
  
 
             <td style="width: 100px; text-align: center;">
-                <button class="btn btn-mini btn-danger"
-                        ng-click="removeCategorie(item.id)">Remove</button>
+                <button class="btn btn-mini btn-danger" ng-click="removeCategorie(item)">Remove</button>
                 <button class="btn btn-mini btn-success" ng-click="editCategorie(item)">Edit</button>
             </td>
         </tr>
