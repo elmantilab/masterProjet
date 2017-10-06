@@ -6,11 +6,13 @@
 package com.glv.Model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -45,8 +47,8 @@ public class Client implements Serializable {
     private String nationalite;
     @Column(name = "Adresse")
     private String Adresse;
-    @OneToMany(mappedBy = "client")
-    List<Telephone> phones;
+    @OneToMany(mappedBy = "client", fetch = FetchType.LAZY)
+   // List<Telephone> phones = new ArrayList<>();
 //    @OneToMany(mappedBy = "client")
 //    List<Vehicule> vehicules;
 
@@ -130,13 +132,14 @@ public class Client implements Serializable {
         this.Adresse = Adresse;
     }
 
-    public List<Telephone> getPhones() {
+ /*   public List<Telephone> getPhones() {
         return phones;
     }
 
     public void setPhones(List<Telephone> phones) {
         this.phones = phones;
     }
+*/
 
 //    public List<Vehicule> getVehicules() {
 //        return vehicules;
@@ -145,7 +148,6 @@ public class Client implements Serializable {
 //    public void setVehicules(List<Vehicule> vehicules) {
 //        this.vehicules = vehicules;
 //    }
-
     @Override
     public int hashCode() {
         int hash = 3;

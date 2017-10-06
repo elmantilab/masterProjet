@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en" ng-app="AngularSpringApp">
+    <head>
+        <meta charset="utf-8"/>
+        <title>New TEST</title>
+        <link rel="stylesheet" href="resources/css/app.css"/>
+        <link rel="stylesheet" href="resources/bootstrap/css/bootstrap.min.css" />
+    </head>
+    <body>
+        <div id="wrapper">
+            <ul class="menu">
+                <li><a href="#/categories">Categories</a></li>
+                <li><a href="#/cars">Cars</a></li>
+                <li><a href="#/trains">Trains</a></li>
+                <li><a href="#/categories">Railway Station</a></li>
+                <li><a href="#/Profil">Profil</a></li>
+                <li><a href="#/Client">Client</a></li>
+                <li><a href="#/Vehicule">Vehicule</a></li>
+                <li><a href="#/Contrat">Contrat</a></li>
+            </ul>
+            <hr class="" />
+            <div ng-view=""></div>
+        </div>
+
+        <script src="resources/js/lib/angular/angular.js"></script>
+        <script src="resources/js/app.js"></script>
+        <script src="resources/js/services.js"></script>
+        <script src="resources/js/controllers/RailwayStationController.js"></script>
+        <script src="resources/js/controllers/CarController.js"></script>
+        <script src="resources/js/controllers/CategorieController.js"></script>
+        <script src="resources/js/controllers/TrainController.js"></script>
+        <script src="resources/js/controllers/UserController.js"></script>
+        <script src="resources/js/controllers/VehiculeController.js"></script>
+        <script src="resources/js/controllers/MarqueController.js"></script>
+        <script src="resources/js/controllers/ModeleController.js"></script>
+        <script src="resources/js/controllers/ProfilController.js"></script>
+        <script src="resources/js/controllers/ContratController.js"></script>
+        <script src="resources/js/controllers/ClientController.js"></script>
+        <script src="resources/js/filters.js"></script>
+        <script src="resources/js/directives.js"></script>
+    </body>
+</html>

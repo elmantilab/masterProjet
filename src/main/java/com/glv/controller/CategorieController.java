@@ -44,12 +44,16 @@ public class CategorieController {
         System.out.println("categorie " + categorie);
         categorieService.create(categorie);
         categories.add(categorie);
+
     }
 
-    @RequestMapping(value = "/update", method = RequestMethod.PUT)
+    @RequestMapping(value = "/update", method = RequestMethod.GET)
     public @ResponseBody
-    void updateCategorie(@RequestBody Categorie categorie) {
-        categorieService.edit(categorie);
+    void updateCategorie( @RequestBody int index) {
+
+//        categorieService.edit(categorie);
+//        categories.set(index, categorie);
+        System.out.println("Categorie before " + index );
     }
 
     @RequestMapping(value = "/remove/{id}", method = RequestMethod.DELETE)

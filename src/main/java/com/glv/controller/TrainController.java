@@ -46,7 +46,7 @@ public class TrainController {
 
     @RequestMapping(value = "/removeAllTrains", method = RequestMethod.DELETE)
     public @ResponseBody
-    void removeAllTrains() {
+    void removeAllTrains() { 
         trainService.deleteAll();
     }
 

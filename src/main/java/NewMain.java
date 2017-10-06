@@ -8,18 +8,17 @@ import com.glv.Model.Client;
  */
 /**
  *
- * @author nelmoudden
+ * @author nelmoudden 
  */
 public class NewMain {
-
+ 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         Client c = new Client();
         
-        
-        c.setCin("hhh");
+           c.setCin("hhh");
         Client c2 = c;
         System.out.println(" c " + c.hashCode());
         System.out.println(" c2 " + c2.hashCode());

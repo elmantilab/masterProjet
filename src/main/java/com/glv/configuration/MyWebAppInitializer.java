@@ -2,8 +2,8 @@ package com.glv.configuration;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
-/**
- * @author imssbora
+/** 
+ * @author imssbora  
  */
 public class MyWebAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 

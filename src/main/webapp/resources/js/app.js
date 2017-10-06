@@ -6,6 +6,14 @@ var App = angular.module('AngularSpringApp', ['AngularSpringApp.filters', 'Angul
 
 // Declare app level module which depends on filters, and services
 App.config(['$routeProvider', function ($routeProvider) {
+             $routeProvider.when('/', {
+            templateUrl: 'index',
+ 
+        });
+            $routeProvider.when('/clients', {
+            templateUrl: 'clients/layout',
+            controller: ClientController
+        });
         $routeProvider.when('/categories', {
             templateUrl: 'categories/layout',
             controller: CategorieController
@@ -27,7 +35,7 @@ App.config(['$routeProvider', function ($routeProvider) {
         
         
         //---------------------nabil----------------//
-         $routeProvider.when('/cleint', {
+         $routeProvider.when('/client', {
             templateUrl: 'client/layout',
             controller: ClientController
         });
@@ -64,5 +72,5 @@ App.config(['$routeProvider', function ($routeProvider) {
         
 
 
-        $routeProvider.otherwise({redirectTo: '/categories'});
+        $routeProvider.otherwise({redirectTo: '/clients'});
     }]);

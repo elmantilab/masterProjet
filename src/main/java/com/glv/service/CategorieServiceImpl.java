@@ -12,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
  * Created with IntelliJ IDEA. User: xvitcoder Date: 12/20/12 Time: 11:14 PM
  */
 @Service("categorieService")
-
 public class CategorieServiceImpl implements CategorieService {
 
     @Autowired
@@ -25,6 +24,7 @@ public class CategorieServiceImpl implements CategorieService {
         dao.create(entityClass);
 
     }
+    
 
     @Override
     @Transactional

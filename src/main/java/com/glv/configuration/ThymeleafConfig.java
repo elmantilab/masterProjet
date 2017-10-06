@@ -3,15 +3,14 @@ package com.glv.configuration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.thymeleaf.spring4.SpringTemplateEngine;
+import org.thymeleaf.spring4.SpringTemplateEngine; 
 import org.thymeleaf.spring4.view.ThymeleafViewResolver;
 import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
-
-/**
- * Created by xvitcoder on 12/24/15.
- */
-@Configuration
-
+   
+/**        
+ * Created by xvitcoder on 12/24/15.   
+ */      
+@Configuration  
 public class ThymeleafConfig {
 
     @Bean
@@ -20,19 +19,19 @@ public class ThymeleafConfig {
 //         resolver.setPrefix("/WEB-INF/views/");
 //        resolver.setSuffix(".jsp");
         resolver.setPrefix("/WEB-INF/html/");
-        resolver.setSuffix(".html");
-        resolver.setTemplateMode("HTML5");
-        resolver.setCacheable(false);
-        return resolver;
-    }
-
+        resolver.setSuffix(".html");  
+//        resolver.setTemplateMode("HTML5");    
+//        resolver.setCacheable(false); 
+        return resolver;  
+    } 
+ 
     @Bean
     public SpringTemplateEngine templateEngine() {
         SpringTemplateEngine engine = new SpringTemplateEngine();
         engine.setTemplateResolver(templateResolver());
         return engine;
     }
-
+    
     @Bean
     public ThymeleafViewResolver thymeleafViewResolver() {
         ThymeleafViewResolver resolver = new ThymeleafViewResolver();

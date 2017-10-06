@@ -1,0 +1,38 @@
+<script>
+require("resources/js/lib/angular/angular.js");
+require("resources/js/app.js");
+require("resources/js/services.js");
+require("resources/js/controllers/RailwayStationController.js");
+require("resources/js/controllers/CarController.js");
+require("resources/js/controllers/CategorieController.js");
+require("resources/js/controllers/TrainController.js");
+require("resources/js/controllers/UserController.js");
+require("resources/js/controllers/VehiculeController.js");
+require("resources/js/controllers/MarqueController.js");
+require("resources/js/controllers/ModeleController.js");
+require("resources/js/controllers/ProfilController.js");
+require("resources/js/controllers/ContratController.js");
+require("resources/js/controllers/ClientController.js");
+require("resources/js/filters.js");
+require("resources/js/directives.js");
+require("resources/js/js/bootstrap/bootstrap.min.js");
+require("resources/js/js/jquery.cookie.js");
+require("resources/js/js/bootstrap/bootstrap.min.js");
+require("resources/js/js/bootstrap/chosen.jquery.min.js");
+require("resources/js/js/jquery.cookie.js");
+require("resources/js/js/charisma.js");
+require("resources/js/js/jquery.history.js");
+require("resources/js/js/bootstrap/jquery.colorbox-min.js");
+require("resources/js/js/jquery.noty.js");
+require("resources/js/js/bootstrap/responsive-tables.js");
+require("resources/js/js/bootstrap/bootstrap-tour.min.js");
+require("resources/js/js/jquery.raty.min.js");
+require("resources/js/js/jquery.iphone.toggle.js");
+require("resources/js/js/jquery.autogrow-textarea.js");
+ require("resources/js/js/jquery.uploadify-3.1.min.js");
+ require("resources/js/js/bootstrap/moment.min.js");
+ require("resources/js/js/bootstrap/fullcalendar.min.js");
+require("resources/js/js/jquery.dataTables.min.js");
+</script>
+
+

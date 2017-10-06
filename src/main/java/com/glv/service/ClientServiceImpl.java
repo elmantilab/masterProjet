@@ -15,7 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 @Transactional
 public class ClientServiceImpl implements ClientService {
 
-    // @Autowired
+     @Autowired
     private ClientDAO dao;
 
     @Override

@@ -1,42 +1,23 @@
-<div class="alert alert-error" ng-show="error">{{errorMessage}}</div>
-<form class="form-horizontal">
 
-
-
-
-    <div class="control-group">
-        <label class="control-label" for="categorie_name">Categrie Vehicule</label>
-
-        <div class="controls">
-            <input type="text" id="categorie_name" ng-model="categorie.categorie"
-                   placeholder="Train Name" required="required" min="2" />
-        </div>
-    </div>
-
-    <div class="control-group">
-
-        <hr />
-        <div class="controls">
-            <button type="button" class="btn btn-primary"
-                    ng-disabled="!categorie.categorie" ng-hide="editMode"
-                    ng-click="addNewCategorie(categorie)">Add Categorie Vehicule</button>
-
-            <button type="button" class="btn btn-primary"
-                    ng-disabled="!categorie.name || !categorie.speed" ng-show="editMode"
-                    ng-click="updateCategorie(categorie)">Save Categorie Vehicule</button>
-            <button type="button" class="btn" ng-click="resetCategorieForm()">Reset</button>
-        </div>
-    </div>
-</form>
 <hr />
 <h3>Categorie Vehicules List</h3>
+<div class="col-md-3 col-sm-3 col-xs-6"   >
+    <a data-toggle="tooltip" title="6 new members." class="well top-block" href="#">
+        <i class="glyphicon glyphicon-user blue"></i>
+
+        <div>Total Catégorie</div>
+        <div  ng-bind="categories.length"> </div>
+        <span  ng-bind="categories.length" class="notification">6</span>
+    </a>
+</div>
+<a  ng-click="ShowDialog('#myModal')" class="btn btn-info  ">Click for dialog</a>
 <div class="alert alert-info" ng-show="categories.length == 0">No Categorie Vehicules found</div>
-<table class="table table-bordered table-striped" ng-show="categories.length > 0">
+<table class=" disabled table table-bordered table-striped" ng-show="categories.length > 0">
     <thead>
         <tr>
             <th style="text-align: center; width: 25px;">Id</th>
             <th style="text-align: center;">Name</th>
-   
+
             <th style="text-align: center;">Action</th>
         </tr>
     </thead>
@@ -44,15 +25,68 @@
         <tr ng-repeat="item in categories| orderBy:predicate">
             <td style="text-align: center;">{{item.id}}</td>
             <td>{{item.categorie}}</td>
-           
- 
+
+
 
             <td style="width: 100px; text-align: center;">
-                <button class="btn btn-mini btn-danger" ng-click="removeCategorie(item)">Remove</button>
-                <button class="btn btn-mini btn-success" ng-click="editCategorie(item)">Edit</button>
+                <button class="btn btn-mini btn-danger" ng-click="removeCategorie(item.id);">Remove</button>
+                <button class="btn btn-mini btn-success"   ng-click="editCategorie(item, $index);ShowDialog('#myModal')">Edit</button>
+
             </td>
         </tr>
     </tbody>
 </table>
 <button class="btn btn-danger" ng-show="categories.length > 1"
         ng-click="removeAllCategories()">Remove All stations</button>
+
+
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">×</button>
+                <h3>Ajouter Catégorie</h3>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-danger">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <strong>Attention</strong> Merci d'entré les bons informations.
+                </div>
+                <div class="alert alert-error" ng-show="error">{{errorMessage}}</div>
+                <form class="form-horizontal">
+
+
+
+
+                    <div class="control-group">
+                        <label class="control-label" for="categorie_name">Categrie Vehicule</label>
+
+                        <div class="controls">
+                            <input type="text" id="categorie_name" ng-model="categorie.categorie"
+                                   placeholder="Train Name" required="required" min="2" />
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="controls">
+                            <button type="button" class="btn btn-primary"
+                                    ng-bind="noty, msg"
+                                    ng-disabled="!categorie.categorie" ng-hide="editMode" data-dismiss="modal"
+                                    ng-click="addNewCategorie(categorie)">Add Categorie Vehicule</button>
+
+                            <button type="button" class="btn btn-primary" data-dismiss="modal"
+                                    ng-disabled="!categorie.categorie" ng-show="editMode"
+                                    ng-click="updateCategorie(categorie, indexListCategorie)">Save Categorie Vehicule</button>
+
+                        </div>
+                        <a href="#" class="btn btn-default" data-dismiss="modal">Close</a>
+
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
