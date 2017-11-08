@@ -1,10 +1,161 @@
+ 
 
-<div class="input-append">
-    <input style="width:358px; margin-left: 100px;" class="span2" type="text" ng-model="nom" required="required" min="1" />
-    <input style="width:358px; margin-left: 100px;" class="span2" type="text" ng-model="prenom"  required="required" min="1" />
-    <input style="width:358px; margin-left: 100px;" class="span2" type="text" ng-model="carName" required="required" min="1" />
-    <input style="width:358px; margin-left: 100px;" class="span2" type="text" ng-model="carName" required="required" min="1" />
-    <input style="width:358px; margin-left: 100px;" class="span2" type="text" ng-model="carName" required="required" min="1" />
-    
-    <button class="btn btn-primary" ng-disabled="!carName" ng-click="addNewCar(carName)">Add Car</button>
+<link href="resources/css/charisma-app.css" rel="stylesheet"/>
+
+<link href='resources/css/bootstrap/chosen.min.css' rel="stylesheet"/>
+
+<link href='resources/css/bootstrap/bootstrap-tour.min.css' rel="stylesheet"/>
+
+<script src="resources/js/js/jquery.min.js"></script>
+
+
+<a  ng-click="ShowDialog('#myModal')" class="btn btn-info  ">Ajouter une Modéle</a>
+
+<div class="pull-right"> Search by Modéle <input type="text" ng-model="search.nom" /></div>
+
+<h3>List des Modéles </h3>
+
+
+<div class=" row"  >
+
+    <div class="box-inner col-md-3 col-sm-3 col-xs-6" ng-repeat="item in modeles.slice(((currentPage - 1) * itemsPerPage), ((currentPage) * itemsPerPage))| orderBy:predicate | filter:search| limitTo:totalItems:3*(currentPage-1)"   >
+        <div class="box-header well" data-original-title="">
+            <h2><i class="glyphicon glyphicon-list"></i> {{item.nom}}</h2>
+
+            <div  >
+                <div class="btn-group pull-right">
+                    <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                        <a   ><i class="glyphicon glyphicon-cog"></i> </a>
+
+
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a  ng-click="editModele(item, $index);ShowDialog('#myModal')"><i class="glyphicon glyphicon-edit green"></i>  Modifier </a></li>
+
+                        <li><a  ng-click="removeModele(item.id);"> <i class=" glyphicon glyphicon-remove-circle red"></i>  Supprimer </a></li>
+                    </ul>
+                </div>
+
+
+            </div>
+        </div>
+        <div class="box-content">
+            <div data-toggle="tooltip" title="{{item.nom}}" class="well top-block"  >
+                <i class="glyphicon glyphicon-user blue"></i>
+                <div>Nom Modéle</div>
+                <div  ng-bind="item.nom"> </div>
+
+
+
+            </div> 
+        </div>
+    </div>
+
 </div>
+
+
+View <select ng-model="viewby" ng-change="setItemsPerPage(viewby)"><option>3</option><option>5</option><option>10</option><option>20</option><option>30</option><option>40</option><option>50</option></select> records at a time.
+
+<div class="alert alert-info" ng-show="modeles.length == 0">No Modele Vehicules found</div>
+
+<pagination total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()" class="pagination-sm" items-per-page="itemsPerPage"></pagination>
+
+
+
+
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">×</button>
+                <h3>Ajouter Modéle</h3>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-danger">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <strong>Attention</strong> Merci d'entré les bons informations.
+                </div>
+                <div class="alert alert-error" ng-show="error">{{errorMessage}}</div>
+                <form class="form-horizontal">
+                    <div class="control-group">
+                        <label class="control-label" for="modele_name">Modele Vehicule</label>
+
+                        <div class="controls">
+                            <input type="text" id="modele_name" ng-model="modele.nom"
+                                   placeholder="Train Name" required="required" min="2" />
+                        </div>
+                    </div>
+
+
+
+                    <div class="control-group">
+                        <label class="control-label" for="modele_marque">Marque Vehicule</label>
+
+                        <div class="controls">
+                            <div class="controls">
+                                <select id="selectError" style="width: 150px;" data-rel="chosen">
+                                    <option>Option 1</option>
+                                    <option>Option 2</option>
+                                    <option>Option 3</option>
+                                    <option>Option 4</option>
+                                    <option>Option 5</option>
+                                </select>
+                            </div>
+                            <select data-ng-options="o for size in sizes" data-ng-model="selectedOption" id="selectError" data-rel="chosen">
+                                <option>Option 1</option>
+                                <option>Option 2</option>
+                                <option>Option 3</option>
+                                <option>Option 4</option>
+                                <option>Option 5</option>
+                            </select>
+
+
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <div class="controls">
+                            <button type="button" class="btn btn-primary"
+                                    data-noty-options="{{msg}}"
+
+                                    ng-disabled="!modele.nom" ng-hide="editMode" data-dismiss="modal"
+                                    ng-click="addNewModele(modele)">Add Modele Vehicule</button>
+
+                            <button type="button" class="btn btn-primary" data-dismiss="modal"
+                                    ng-disabled="!modele.nom" ng-show="editMode"
+                                    ng-click="updateModele(modele, indexListModele)">Save Modele Vehicule</button>
+
+                        </div>
+                        <a href="#" class="btn btn-default" data-dismiss="modal">Close</a>
+
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+ 
+
+<script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.11.0.min.js"></script>
+
+
+
+
+<!-- external javascript -->
+
+<script src="resources/js/js/bootstrap/bootstrap.min.js"></script>
+
+<!-- library for cookie management -->
+<script src="resources/js/js/jquery.cookie.js"></script>
+ 
+
+<!-- select or dropdown enhancer -->
+<script src="resources/js/js/bootstrap/chosen.jquery.min.js"></script>
+ 
+<!-- application script for Charisma demo -->
+<script src="resources/js/js/charisma.js"></script>
+

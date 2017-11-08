@@ -15,6 +15,8 @@ import com.glv.Model.Categorie;
 import com.glv.service.CategorieService;
 import com.glv.service.CategorieServiceImpl;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/categories")
@@ -47,13 +49,20 @@ public class CategorieController {
 
     }
 
-    @RequestMapping(value = "/update", method = RequestMethod.GET)
+    @RequestMapping(value = "/update/{index}", method = RequestMethod.PUT)
     public @ResponseBody
-    void updateCategorie( @RequestBody int index) {
+    void updateCategorie(@RequestBody Categorie categorie, @PathVariable("index") int index) {
 
-//        categorieService.edit(categorie);
-//        categories.set(index, categorie);
-        System.out.println("Categorie before " + index );
+//        for (Map.Entry<Integer, Categorie> entry : map.entrySet()) {
+//            int index = entry.getKey();
+//            Categorie categorie = entry.getValue();
+        categorieService.edit(categorie);
+        categories.set(index, categorie);
+        System.out.println("Categorie before " + categorieService);
+        System.out.println(" categories "+categories.get(index));
+        // do something with key and/or tab
+//        }
+
     }
 
     @RequestMapping(value = "/remove/{id}", method = RequestMethod.DELETE)
@@ -71,5 +80,11 @@ public class CategorieController {
     @RequestMapping("/layout")
     public String getCategoriePartialPage(ModelMap modelMap) {
         return "categories/layout";
+    }
+
+    class mapCategorie {
+
+        private Categorie cat;
+        private int index;
     }
 }

@@ -5,6 +5,7 @@ import com.glv.Model.Modele;
 import com.glv.dao.ModeleDAO;
 import com.glv.service.ModeleService;
 import java.util.List;
+import javax.transaction.Transactional;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -12,9 +13,10 @@ import org.springframework.beans.factory.annotation.Autowired;
  * Created with IntelliJ IDEA. User: xvitcoder Date: 12/20/12 Time: 11:14 PM
  */
 @Service("ModeleService")
+@Transactional
 public class ModeleServiceImpl implements ModeleService {
 
-    //@Autowired
+    @Autowired
     private ModeleDAO dao;
 
     @Override

@@ -10,10 +10,7 @@ App.config(['$routeProvider', function ($routeProvider) {
             templateUrl: 'index',
 
         });
-       $routeProvider.when('/login', {
-            templateUrl: 'login/layout',
-            controller: LoginController
-    });
+    
         $routeProvider.when('/clients', {
             templateUrl: 'clients/layout',
             controller: ClientController
@@ -58,7 +55,7 @@ App.config(['$routeProvider', function ($routeProvider) {
             templateUrl: 'Vehicule/layout',
             controller: VehiculeController
         });
-        $routeProvider.when('/modeles', {
+        $routeProvider.when('/Modele', {
             templateUrl: 'Modele/layout',
             controller: ModeleController
         });
@@ -76,5 +73,5 @@ App.config(['$routeProvider', function ($routeProvider) {
 
 
 
-        $routeProvider.otherwise({redirectTo: '/login'});
+        $routeProvider.otherwise({redirectTo: '/clients'});
     }]);

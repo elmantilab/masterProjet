@@ -1,5 +1,6 @@
 @import url(https://fonts.googleapis.com/css?family=Shojumaru);
-
+.chosen-container{width: 150px !important;}
+.selectError_chosen{width: 150px !important;}
 select {
     background-color: #fff;
 }

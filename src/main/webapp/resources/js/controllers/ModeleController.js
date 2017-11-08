@@ -1,88 +1,134 @@
 'use strict';
 
 /**
- * CategorieController
+ * ModeleController
  * @constructor
  */
-var ModeleController = function($scope, $http) {
+var ModeleController = function ($scope, $http, $rootScope) {
     $scope.Modele = {};
+      $scope.sizes = [
+          "small (12-inch)",
+          "medium (14-inch)",
+          "large (16-inch)",
+          "insane (42-inch)"
+      ];
     $scope.editMode = false;
+    $scope.viewby = 2;
+    $scope.currentPage = 1;
+    $scope.itemsPerPage = $scope.viewby;
+    $scope.maxSize = 5; //Number of pager buttons to show
 
-    $scope.fetchModeleList = function() {
-        $http.get('Modele/Modelelist.json').success(function(ModeleList){
+    $scope.setPage = function (pageNo) {
+        $scope.currentPage = pageNo;
+    };
+    $scope.pageChanged = function () {
+        console.log('Page changed to: ' + $scope.currentPage);
+    };
+    $scope.setItemsPerPage = function (num) {
+        $scope.itemsPerPage = num;
+        $scope.currentPage = 1; //reset to first page
+    }
+    $scope.indexListModele = null;
+    $scope.Cat = null;
+    $rootScope.modeles = null;
+ 
+    $scope.editMode = false;
+    $scope.msg = null;
+    $scope.noty = 'data-noty-options=';
+    $scope.msgAlert = '<div class="alert alert-danger"> <button type="button" class="close" data-dismiss="alert">&times;</button> <strong>Attention</strong> Merci d entré les bons informations.</div>';
+    $scope.msgError = function (msg) {
+        $scope.msg = {"text": msg, "layout": "topRight", "type": "error"};
+    };
+    $scope.msgInformation = function (msg) {
+        $scope.msg = {"text": "Votre insertion à été bien effectué", "layout": "topRight", "type": "success"};
+    };
+    $scope.ShowDialog = function (idDialog) {
+        $(idDialog).modal('show');
+    };
+
+    $scope.fetchModeleList = function () {
+        $http.get('Modele/Modelelist.json').success(function (ModeleList) {
             $scope.Modele = ModeleList;
         });
     };
-
-    $scope.addNewCategorie = function(Modele) {
+    /***List Des Modeles***/
+    $scope.addNewModele = function (Modele) {
 
         $scope.resetError();
 
-        $http.post('Modele/add', Modele).success(function() {
+        $http.post('Modele/add', Modele).success(function () {
             $scope.fetchModelesList();
-    
+
             $scope.Modele.Modele = '';
- 
-        }).error(function() {
+
+        }).error(function () {
             $scope.setError('Could not add a new Modele');
         });
-    };
+    };   /***End List***/
 
-    $scope.updateModele = function(Modele) {
+
+    /***Update Modele***/
+    $scope.updateModele = function (Modele, index) {
         $scope.resetError();
 
-        $http.put('Modele/update', Modele).success(function() {
-            $scope.fetchCategoriesList();
- 
-            $scope.Modele.Modele = '';
-  
+        $http.put('Modele/update' + index, Modele).success(function () {
+            $scope.fetchModelesList();
+
+            $scope.Modele.name = '';
+
             $scope.editMode = false;
-        }).error(function() {
+        }).error(function () {
             $scope.setError('Could not update the Profil');
         });
     };
+    /***End Modele***/
 
-    $scope.editModele = function(Modele) {
+
+
+    /***  Edit ***/
+    $scope.editModele = function (Modele, index) {
         $scope.resetError();
+        $scope.indexListModele = index;
         $scope.Modele = Modele;
         $scope.editMode = true;
     };
+    /***End Edit***/
 
-    $scope.removeModele = function(id) {
+    $scope.removeModele = function (id) {
         $scope.resetError();
 
-        $http.delete('Modele/remove/' + id).success(function() {
+        $http.delete('Modele/remove/' + id).success(function () {
             $scope.fetchModeleList();
-        }).error(function() {
+        }).error(function () {
             $scope.setError('Could not remove Modele');
         });
-        
+
         $scope.Modele = '';
     };
 
-    $scope.removeAllModeles = function() {
+    $scope.removeAllModeles = function () {
         $scope.resetError();
 
-        $http.delete('Modele/removeAll').success(function() {
+        $http.delete('Modele/removeAll').success(function () {
             $scope.fetchModelesList();
-        }).error(function() {
+        }).error(function () {
             $scope.setError('Could not remove all Modele');
         });
 
     };
 
-    $scope.resetModeleForm = function() {
+    $scope.resetModeleForm = function () {
         $scope.resetError();
         $scope.Modele = {};
         $scope.editMode = false;
     };
 
-    $scope.resetError = function() {
+    $scope.resetError = function () {
         $scope.error = false;
         $scope.errorMessage = '';
     };
 
-    $scope.setError = function(message) {
+    $scope.setError = function (message) {
         $scope.error = true;
         $scope.errorMessage = message;
     };
