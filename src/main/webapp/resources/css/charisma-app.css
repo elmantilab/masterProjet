@@ -123,7 +123,11 @@ select {
     box-shadow: 0 0 10px rgba(189, 189, 189, 0.4);
     -webkit-box-shadow: 0 0 10px rgba(189, 189, 189, 0.4);
     -moz-box-shadow: 0 0 10px rgba(189, 189, 189, 0.4);
+        padding-left: 0px;
+    padding-right: 0px;
+    margin: 20px;
 }
+ 
 
 .box-header {
     border: none;

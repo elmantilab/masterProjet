@@ -5,13 +5,14 @@
  * @constructor
  */
 var ModeleController = function ($scope, $http, $rootScope) {
+    $rootScope.marques = null;
     $scope.Modele = {};
-      $scope.sizes = [
-          "small (12-inch)",
-          "medium (14-inch)",
-          "large (16-inch)",
-          "insane (42-inch)"
-      ];
+    $scope.sizes = [
+        "small (12-inch)",
+        "medium (14-inch)",
+        "large (16-inch)",
+        "insane (42-inch)"
+    ];
     $scope.editMode = false;
     $scope.viewby = 2;
     $scope.currentPage = 1;
@@ -31,16 +32,16 @@ var ModeleController = function ($scope, $http, $rootScope) {
     $scope.indexListModele = null;
     $scope.Cat = null;
     $rootScope.modeles = null;
- 
+
     $scope.editMode = false;
     $scope.msg = null;
     $scope.noty = 'data-noty-options=';
-    $scope.msgAlert = '<div class="alert alert-danger"> <button type="button" class="close" data-dismiss="alert">&times;</button> <strong>Attention</strong> Merci d entré les bons informations.</div>';
+    $scope.msgAlert = '<div class="alert alert-danger"> <button type="button" class="close" data-dismiss="alert">&times;</button> <strong>Attention</strong> Merci d entrï¿½ les bons informations.</div>';
     $scope.msgError = function (msg) {
         $scope.msg = {"text": msg, "layout": "topRight", "type": "error"};
     };
     $scope.msgInformation = function (msg) {
-        $scope.msg = {"text": "Votre insertion à été bien effectué", "layout": "topRight", "type": "success"};
+        $scope.msg = {"text": "Votre insertion ï¿½ ï¿½tï¿½ bien effectuï¿½", "layout": "topRight", "type": "success"};
     };
     $scope.ShowDialog = function (idDialog) {
         $(idDialog).modal('show');
@@ -48,7 +49,7 @@ var ModeleController = function ($scope, $http, $rootScope) {
 
     $scope.fetchModeleList = function () {
         $http.get('Modele/Modelelist.json').success(function (ModeleList) {
-            $scope.Modele = ModeleList;
+            $rootScope.modeles = ModeleList;
         });
     };
     /***List Des Modeles***/
@@ -116,6 +117,14 @@ var ModeleController = function ($scope, $http, $rootScope) {
         });
 
     };
+
+    /***Get Marque***/
+    $scope.getMarque = function () {
+        $http.get('Marques/Marquelist.json').success(function (ListMarque) {
+            $rootScope.marques = ListMarque;
+        });
+    };
+
 
     $scope.resetModeleForm = function () {
         $scope.resetError();

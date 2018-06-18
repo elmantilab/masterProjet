@@ -26,7 +26,7 @@ public class ModeleController {
     @Autowired
     private ModeleService modeleService;
 
-    @RequestMapping("modelelist.json")
+    @RequestMapping("Modelelist.json")
     public @ResponseBody
     List<Modele> getModelesList() {
         System.out.println("  " + modeles.size());

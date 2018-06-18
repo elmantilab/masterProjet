@@ -5,10 +5,12 @@
  */
 package com.glv.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -30,7 +32,8 @@ public class Marque implements Serializable {
     private Long id;
     private String nom;
 
-    @OneToMany(mappedBy = "marque")
+    @OneToMany(mappedBy = "marque",fetch = FetchType.LAZY)
+    @JsonIgnore 
     private List<Modele> modeles;
 
     public Long getId() {

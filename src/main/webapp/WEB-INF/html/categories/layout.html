@@ -1,8 +1,8 @@
 
 <hr />
-<a  ng-click="ShowDialog('#myModal')" class="btn btn-info  ">Ajouter une Catégorie</a>
-<a   data-noty-options='{"text":"Votre inerstion à été bien effectué","layout":"topRight","type":"success"}' class="btn btn-info  ">Alert</a>
-<div class="pull-right"> Search by Catégorie <input type="text" ng-model="search.categorie" /></div>
+<a  ng-click="ShowDialog('#modal')" class="btn btn-info  ">Ajouter une Catï¿½gorie</a>
+<a   data-noty-options='{"text":"Votre inerstion ï¿½ ï¿½tï¿½ bien effectuï¿½","layout":"topRight","type":"success"}' class="btn btn-info  ">Alert</a>
+<div class="pull-right"> Search by Catï¿½gorie <input type="text" ng-model="search.categorie" /></div>
 
 <h3>Categorie Vehicules List</h3>
 
@@ -16,12 +16,10 @@
             <div  >
                 <div class="btn-group pull-right">
                     <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                        <a   ><i class="glyphicon glyphicon-cog"></i> </a>
-
-
+                        <a><i class="glyphicon glyphicon-cog"></i> </a>
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a  ng-click="editCategorie(item, $index);ShowDialog('#myModal')"><i class="glyphicon glyphicon-edit green"></i>  Modifier </a></li>
+                        <li><a  ng-click="editCategorie(item, $index);ShowDialog('#modal')"><i class="glyphicon glyphicon-edit green"></i>  Modifier </a></li>
 
                         <li><a  ng-click="removeCategorie(item.id);"> <i class=" glyphicon glyphicon-remove-circle red"></i>  Supprimer </a></li>
                     </ul>
@@ -33,7 +31,7 @@
         <div class="box-content">
             <div data-toggle="tooltip" title="{{item.categorie}}" class="well top-block"  >
                 <i class="glyphicon glyphicon-user blue"></i>
-                <div>Nom Catégorie</div>
+                <div>Nom Catï¿½gorie</div>
                 <div  ng-bind="item.categorie"> </div>
 
 
@@ -55,52 +53,16 @@ View <select ng-model="viewby" ng-change="setItemsPerPage(viewby)"><option>3</op
 
 
 
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel"
      aria-hidden="true">
 
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">×</button>
-                <h3>Ajouter Catégorie</h3>
+                <button type="button" class="close" data-dismiss="modal">ï¿½</button>
+                <h3>Ajouter Catï¿½gorie</h3>
             </div>
-            <div class="modal-body">
-                <div class="alert alert-danger">
-                    <button type="button" class="close" data-dismiss="alert">&times;</button>
-                    <strong>Attention</strong> Merci d'entré les bons informations.
-                </div>
-                <div class="alert alert-error" ng-show="error">{{errorMessage}}</div>
-                <form class="form-horizontal">
-
-
-
-
-                    <div class="control-group">
-                        <label class="control-label" for="categorie_name">Categrie Vehicule</label>
-
-                        <div class="controls">
-                            <input type="text" id="categorie_name" ng-model="categorie.categorie"
-                                   placeholder="Train Name" required="required" min="2" />
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <div class="controls">
-                            <button type="button" class="btn btn-primary"
-                                    data-noty-options="{{msg}}"
-
-                                    ng-disabled="!categorie.categorie" ng-hide="editMode" data-dismiss="modal"
-                                    ng-click="addNewCategorie(categorie)">Add Categorie Vehicule</button>
-
-                            <button type="button" class="btn btn-primary" data-dismiss="modal"
-                                    ng-disabled="!categorie.categorie" ng-show="editMode"
-                                    ng-click="updateCategorie(categorie, indexListCategorie)">Save Categorie Vehicule</button>
-
-                        </div>
-                        <a href="#" class="btn btn-default" data-dismiss="modal">Close</a>
-
-                    </div>
-                </form>
-            </div>
+            
 
         </div>
     </div>
@@ -128,7 +90,7 @@ View <select ng-model="viewby" ng-change="setItemsPerPage(viewby)"><option>3</op
 
             <td style="width: 100px; text-align: center;">
                 <button class="btn btn-mini btn-danger" ng-click="removeCategorie(item.id);">Remove</button>
-                <button class="btn btn-mini btn-success" f  ng-click="editCategorie(item, $index);ShowDialog('#myModal')">Edit</button>
+                <button class="btn btn-mini btn-success" f  ng-click="editCategorie(item, $index);ShowDialog('#modal')">Edit</button>
 
             </td>
         </tr>

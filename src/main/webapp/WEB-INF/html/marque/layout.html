@@ -1,5 +1,3 @@
- 
-
 <link href="resources/css/charisma-app.css" rel="stylesheet"/>
 
 <link href='resources/css/bootstrap/chosen.min.css' rel="stylesheet"/>
@@ -7,18 +5,17 @@
 <link href='resources/css/bootstrap/bootstrap-tour.min.css' rel="stylesheet"/>
 
 <script src="resources/js/js/jquery.min.js"></script>
+<hr />
+<a  ng-click="ShowDialog('#myModal')" class="btn btn-info  ">Ajouter une Marque</a>
+<a   data-noty-options='{"text":"Votre inerstion � �t� bien effectu�","layout":"topRight","type":"success"}' class="btn btn-info  ">Alert</a>
+<div class="pull-right"> Search by   <input type="text" ng-model="search.nom" /></div>
 
-
-<a  ng-click="ShowDialog('#myModal')" class="btn btn-info  ">Ajouter une Modéle</a>
-
-<div class="pull-right"> Search by Modéle <input type="text" ng-model="search.nom" /></div>
-
-<h3>List des Modéles </h3>
+<h3>Marque Vehicules List</h3>
 
 
 <div class=" row"  >
 
-    <div class="box-inner col-md-3 col-sm-3 col-xs-6" ng-repeat="item in modeles.slice(((currentPage - 1) * itemsPerPage), ((currentPage) * itemsPerPage))| orderBy:predicate | filter:search| limitTo:totalItems:3*(currentPage-1)"   >
+    <div class="box-inner col-md-3 col-sm-3 col-xs-6" ng-repeat="item in marques.slice(((currentPage - 1) * itemsPerPage), ((currentPage) * itemsPerPage))| orderBy:predicate | filter:search| limitTo:totalItems:3*(currentPage-1)"   >
         <div class="box-header well" data-original-title="">
             <h2><i class="glyphicon glyphicon-list"></i> {{item.nom}}</h2>
 
@@ -30,9 +27,9 @@
 
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a  ng-click="editModele(item, $index);ShowDialog('#myModal')"><i class="glyphicon glyphicon-edit green"></i>  Modifier </a></li>
+                        <li><a  ng-click="editMarque(item, $index);ShowDialog('#myModal')"><i class="glyphicon glyphicon-edit green"></i>  Modifier </a></li>
 
-                        <li><a  ng-click="removeModele(item.id);"> <i class=" glyphicon glyphicon-remove-circle red"></i>  Supprimer </a></li>
+                        <li><a  ng-click="removeMarque(item.id);"> <i class=" glyphicon glyphicon-remove-circle red"></i>  Supprimer </a></li>
                     </ul>
                 </div>
 
@@ -42,7 +39,7 @@
         <div class="box-content">
             <div data-toggle="tooltip" title="{{item.nom}}" class="well top-block"  >
                 <i class="glyphicon glyphicon-user blue"></i>
-                <div>Nom Modéle</div>
+                <div>Nom Marque</div>
                 <div  ng-bind="item.nom"> </div>
 
 
@@ -56,7 +53,7 @@
 
 View <select ng-model="viewby" ng-change="setItemsPerPage(viewby)"><option>3</option><option>5</option><option>10</option><option>20</option><option>30</option><option>40</option><option>50</option></select> records at a time.
 
-<div class="alert alert-info" ng-show="modeles.length == 0">No Modele Vehicules found</div>
+<div class="alert alert-info" ng-show="marques.length == 0">No Marque Vehicules found</div>
 
 <pagination total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()" class="pagination-sm" items-per-page="itemsPerPage"></pagination>
 
@@ -70,56 +67,39 @@ View <select ng-model="viewby" ng-change="setItemsPerPage(viewby)"><option>3</op
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">×</button>
-                <h3>Ajouter Modéle</h3>
+                <button type="button" class="close" data-dismiss="modal">�</button>
+                <h3>Ajouter Marque</h3>
             </div>
             <div class="modal-body">
                 <div class="alert alert-danger">
                     <button type="button" class="close" data-dismiss="alert">&times;</button>
-                    <strong>Attention</strong> Merci d'entré les bons informations.
+                    <strong>Attention</strong> Merci d'entr� les bons informations.
                 </div>
                 <div class="alert alert-error" ng-show="error">{{errorMessage}}</div>
                 <form class="form-horizontal">
+
+
+
+
                     <div class="control-group">
-                        <label class="control-label" for="modele_name">Modele Vehicule</label>
+                        <label class="control-label" for="marque_name">Categrie Vehicule</label>
 
                         <div class="controls">
-                            <input type="text" id="modele_name" ng-model="modele.nom"
+                            <input type="text" id="marque_name" ng-model="marque.nom"
                                    placeholder="Train Name" required="required" min="2" />
                         </div>
                     </div>
-
-
-
-                    <div class="control-group">
-                        <label class="control-label" for="modele_marque">Marque Vehicule</label>
-
-                        <div class="controls">
-                            <div class="controls">
-                                <select id="selectError" style="width: 150px;" data-rel="chosen">
-                                    <option>Option 1</option>
-                                    <option>Option 2</option>
-                                    <option>Option 3</option>
-                                    <option>Option 4</option>
-                                    <option>Option 5</option>
-                                </select>
-                            </div>
-                    
-
-                        </div>
-
-                    </div>
                     <div class="modal-footer">
-                        <div class="controls"> 
+                        <div class="controls">
                             <button type="button" class="btn btn-primary"
                                     data-noty-options="{{msg}}"
 
-                                    ng-disabled="!modele.nom" ng-hide="editMode" data-dismiss="modal"
-                                    ng-click="addNewModele(modele)">Add Modele Vehicule</button>
+                                    ng-disabled="!marque.nom" ng-hide="editMode" data-dismiss="modal"
+                                    ng-click="addNewMarque(marque)">Add Marque Vehicule</button>
 
                             <button type="button" class="btn btn-primary" data-dismiss="modal"
-                                    ng-disabled="!modele.nom" ng-show="editMode"
-                                    ng-click="updateModele(modele, indexListModele)">Save Modele Vehicule</button>
+                                    ng-disabled="!marque.nom" ng-show="editMode"
+                                    ng-click="updateMarque(marque, indexListMarque)">Save Marque Vehicule</button>
 
                         </div>
                         <a href="#" class="btn btn-default" data-dismiss="modal">Close</a>
@@ -131,7 +111,6 @@ View <select ng-model="viewby" ng-change="setItemsPerPage(viewby)"><option>3</op
         </div>
     </div>
 </div>
- 
 
 <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.11.0.min.js"></script>
 
@@ -144,11 +123,41 @@ View <select ng-model="viewby" ng-change="setItemsPerPage(viewby)"><option>3</op
 
 <!-- library for cookie management -->
 <script src="resources/js/js/jquery.cookie.js"></script>
- 
+
 
 <!-- select or dropdown enhancer -->
 <script src="resources/js/js/bootstrap/chosen.jquery.min.js"></script>
- 
+
 <!-- application script for Charisma demo -->
 <script src="resources/js/js/charisma.js"></script>
 
+
+
+<!--
+
+<table class=" disabled table table-bordered table-striped"      ng-show="marques.length > 0">
+    <thead>
+        <tr>
+            <th style="text-align: center; width: 25px;">Id</th>
+            <th style="text-align: center;">Name</th>
+
+            <th style="text-align: center;">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="item in marques| orderBy:predicate">
+            <td style="text-align: center;">{{item.id}}</td>
+            <td>{{item.marque}}</td>
+
+
+
+            <td style="width: 100px; text-align: center;">
+                <button class="btn btn-mini btn-danger" ng-click="removeMarque(item.id);">Remove</button>
+                <button class="btn btn-mini btn-success" f  ng-click="editMarque(item, $index);ShowDialog('#myModal')">Edit</button>
+
+            </td>
+        </tr>
+    </tbody>
+</table>
+<button class="btn btn-danger" ng-show="marques.length > 1"
+        ng-click="removeAllMarques()">Remove All stations</button> -->

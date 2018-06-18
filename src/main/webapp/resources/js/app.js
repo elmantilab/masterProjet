@@ -2,7 +2,7 @@
 
 var AngularSpringApp = {};
 
-var App = angular.module('AngularSpringApp', [ 'ngRoute','ui.bootstrap','AngularSpringApp.filters', 'AngularSpringApp.services', 'AngularSpringApp.directives' ] );
+var App = angular.module('AngularSpringApp', ['ngRoute', 'ui.bootstrap', 'AngularSpringApp.filters', 'AngularSpringApp.services', 'AngularSpringApp.directives']);
 
 // Declare app level module which depends on filters, and services
 App.config(['$routeProvider', function ($routeProvider) {
@@ -10,10 +10,15 @@ App.config(['$routeProvider', function ($routeProvider) {
             templateUrl: 'index',
 
         });
-       $routeProvider.when('/login', {
+        $routeProvider.when('/marques', {
+            templateUrl: 'Marque/layout',
+            controller: MarqueController
+        });
+        $routeProvider.when('/login', {
             templateUrl: 'login/layout',
             controller: LoginController
-    });
+        });
+
         $routeProvider.when('/clients', {
             templateUrl: 'clients/layout',
             controller: ClientController

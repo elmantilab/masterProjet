@@ -5,15 +5,17 @@ import com.glv.dao.MarqueDAO;
 import org.springframework.stereotype.Service;
 import com.glv.service.MarqueService;
 import java.util.List;
+import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * Created with IntelliJ IDEA. User: xvitcoder Date: 12/20/12 Time: 11:14 PM
  */
 @Service("MarqueService")
+@Transactional
 public class MarqueServiceImpl implements MarqueService {
 
-    //@Autowired
+    @Autowired
     private MarqueDAO dao;
     
     @Override
